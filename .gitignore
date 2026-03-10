@@ -40,3 +40,4 @@ build/
 
 # 秘密情報は絶対にGitHubに上げない
 config.properties
+target/

@@ -94,17 +94,30 @@ public class AppleScraper {
     // config.properties を読み込むメソッド
     // ---------------------------------------------------
     private static Properties loadConfig() {
-        Properties config = new Properties();
-        try {
-            config.load(new FileInputStream("src/main/resources/config.properties"));
-            System.out.println("✅ 設定ファイル読み込み成功\n");
-            return config;
-        } catch (IOException e) {
-            System.out.println("❌ config.properties が見つかりません");
-            System.out.println("   src/main/resources/ に作成してください");
-            return null;
+        Properties cfg = new Properties();
+
+        // GitHub Actions用：環境変数から読み込む
+        String token = System.getenv("LINE_ACCESS_TOKEN");
+        String user  = System.getenv("LINE_USER_ID");
+
+        if (token != null && user != null) {
+            cfg.setProperty("LINE_ACCESS_TOKEN", token);
+            cfg.setProperty("LINE_USER_ID", user);
+            System.out.println("✅ 環境変数から設定を読み込みました");
+            return cfg;
         }
+
+        // ローカル用：config.propertiesから読み込む
+        try (FileInputStream in = new FileInputStream(
+                "src/main/resources/config.properties")) {
+            cfg.load(in);
+            System.out.println("✅ config.propertiesから設定を読み込みました");
+        } catch (IOException e) {
+            System.out.println("❌ 設定ファイルが見つかりません: " + e.getMessage());
+        }
+        return cfg;
     }
+s
 
     // ---------------------------------------------------
     // Apple整備済みページから商品一覧を取得するメソッド
