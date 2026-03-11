@@ -86,20 +86,16 @@ apple-refurbished-notifier/
   git commit -m "説明" → 日記に書き込む
   git push             → 日記をクラウドに送る
 
-            ↓ pushすると
+↓pushすると
 
 【GitHub】= インターネット上にある「コードの保管庫」
 
   ・コードをクラウドに保存できる
   ・世界中の人に見せられる（ポートフォリオになる）
   ・GitHub Actionsという自動実行機能が使える
-```
 
----
+## Github Actionとは
 
-## 🤖 GitHub Actionsとは
-
-```
 check.yml = ロボットへの指示書
 
 「毎日0時・3時・6時・9時・12時・15時・18時・21時（UTC）に
