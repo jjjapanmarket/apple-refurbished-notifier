@@ -61,35 +61,23 @@ GitHubのサーバーが自動で動くので、**Macの電源を切っていて
 
 ```
 apple-refurbished-notifier/
-├── .github/
-│   └── workflows/
-│       └── check.yml        # ロボットへの指示書
-├── src/
-│   └── main/
-│       ├── java/org/example/
-│       │   └── AppleScraper.java  # メインのプログラム
-│       └── resources/
-│           └── config.properties  # 🔒 秘密情報（GitHubには上げない）
-├── .gitignore               # GitHubに上げないファイルのリスト
-└── pom.xml                  # 必要な道具の注文リスト
-```
-
-| ファイル | 例え | 役割 |
-|---------|------|------|
-| `AppleScraper.java` | 📖 レシピ本 | Appleサイトを見て・探して・通知する命令書 |
-| `pom.xml` | 🛒 買い物メモ | JSoupというライブラリを取ってきてという注文書 |
-| `check.yml` | ⏰ アラーム設定 | 3時間ごとに起きてプログラムを動かしてという指示書 |
-| `.gitignore` | 🚫 持ち物禁止リスト | GitHubに上げてはいけないファイルの一覧（隠しファイル） |
-| `config.properties` | 🔒 金庫 | LINEトークンなどの秘密情報を保管する場所 |
-
-> **💡 隠しファイルとは？**  
-> ファイル名の先頭が「 `.` 」で始まるファイルのこと。  
-> Macのフォルダでは通常見えない特殊なファイル。 
-> `.gitignore` や `.github` がそれにあたります。
+├── .github/                          # GitHubに特別な指示を渡すための隠しフォルダ（.ドットから始まる＝隠しファイル）
+│   └── workflows/                    # 「自動実行の手順書」を入れるフォルダ
+│       └── check.yml                 # 「3時間ごとにこのコードを動かして」というロボットへの指示書
+│
+├── src/                              # "source"の略。自分で書いたコードを入れるフォルダ
+│   └── main/                         # 実際に動くメインのコードを入れる場所
+│       ├── java/org/example/         # Javaのコードを入れるフォルダ（org/exampleはパッケージ名）
+│       │   └── AppleScraper.java     # このアプリの頭脳。Appleのページを見に行き・探して・LINEに送る処理が全部ここに書いてある
+│       └── resources/                # コードではないけど必要なファイル（設定ファイルなど）を入れる場所
+│           └── config.properties     # LINEのアクセストークンとユーザーIDを保存するファイル。絶対にGitHubに上げてはいけない秘密情報
+│
+├── .gitignore                        # 「このファイルはGitHubに上げないで」というリスト。config.propertiesやtarget/などを指定している
+└── pom.xml                           #  このプロジェクトで使う外部ツール（JSoupなど）を注文するリスト。Mavenというツールがここを読んで自動でダウンロードしてくれる
 
 ---
 
-## 📔 GitとGitHubの違い
+## GitとGitHubの違い
 
 ```
 【Git】= Macの中にある「変更履歴の日記帳」
