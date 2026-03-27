@@ -1,8 +1,7 @@
 name: Apple整備済み品 MacBook Airチェッカー
 
 on:
-  schedule:
-    - cron: '0 0,3,6,9,12,15,18,21 * * *'
+  on:
   workflow_dispatch:
 
 jobs:
