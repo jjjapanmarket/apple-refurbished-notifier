@@ -1,7 +1,6 @@
 name: Apple整備済み品 MacBook Airチェッカー
 
 on:
-  on:
   workflow_dispatch:
 
 jobs:
